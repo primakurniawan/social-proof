@@ -1,0 +1,148 @@
+$mobile: 375px;
+$desktop: 1440px;
+
+$veryDarkMagenta: hsl(300, 43%, 22%);
+$softPink: hsl(333, 80%, 67%);
+$darkGrayishMagenta: hsl(303, 10%, 53%);
+$lightGrayishMagenta: hsl(300, 24%, 96%);
+$white: hsl(0, 0%, 100%);
+
+$fontSize: 15px;
+
+@mixin mobile-up {
+  @media (min-width: 376px) {
+    @content;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $fontSize;
+  font-family: "Spartan", sans-serif;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 1rem;
+  background: url("/images/bg-pattern-top-mobile.svg"),
+    url("/images/bg-pattern-top-mobile.svg");
+  background-position: -50% -50vh, 150% 50vh;
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain;
+
+  @include mobile-up() {
+    background: url("/images/bg-pattern-top-desktop.svg"),
+      url("/images/bg-pattern-bottom-desktop.svg");
+  }
+}
+
+.social {
+  @include mobile-up() {
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  > div {
+    margin: 2rem 0;
+  }
+
+  &__text {
+    @include mobile-up() {
+      flex: 1 1 50%;
+      text-align: left;
+    }
+
+    text-align: center;
+
+    h1 {
+      font-weight: 800;
+      padding: 1rem;
+      color: $veryDarkMagenta;
+
+      @include mobile-up() {
+        padding: 0;
+      }
+    }
+    p {
+      color: $darkGrayishMagenta;
+      line-height: 1.5;
+    }
+  }
+
+  &__rating {
+    @include mobile-up() {
+      flex: 1 1 50%;
+    }
+
+    &__item {
+      width: 100%;
+      text-align: center;
+      background-color: $lightGrayishMagenta;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 5px;
+
+      span {
+        display: block;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__proof {
+    @include mobile-up() {
+      flex: 1 1 100%;
+      display: flex;
+      gap: 1rem;
+    }
+
+    > div {
+      margin: 1rem 0;
+    }
+    &__item {
+      background-color: $veryDarkMagenta;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+
+      > div {
+        margin: 1rem 0;
+      }
+
+      &__top {
+        display: flex;
+        align-items: center;
+
+        img {
+          border-radius: 50%;
+          height: 3rem;
+          width: 2rem2rem;
+          border: 1px solid $darkGrayishMagenta;
+        }
+
+        &__text {
+          margin-left: 1rem;
+          h2 {
+            font-weight: 500;
+            color: $white;
+            font-size: $fontSize;
+          }
+
+          span {
+            color: $darkGrayishMagenta;
+          }
+        }
+      }
+      &__bottom {
+        color: $lightGrayishMagenta;
+      }
+    }
+  }
+}
